@@ -1,0 +1,36 @@
+{
+  "build": {
+	"core": "stm32",
+    "cpu": "cortex-m0plus",
+	"extra_flags": "-DSTM32L071x6 -DSTM32L0 -DSTM32L071xx",
+    "f_cpu": "32000000L",
+    "mcu": "stm32l071cbt6",
+	"product_line": "STM32L071xx",
+    "variant": "STM32L0xx/STM32L071CBT6"
+  },
+  "frameworks": ["arduino"],
+  "name": "STM32L071CBT6 (Arduino)",
+  "upload": {
+    "maximum_ram_size": 20480,
+    "maximum_size": 131072,
+    "protocol": "stlink",
+    "protocols": [
+      "jlink",
+      "cmsis-dap",
+      "stlink",
+      "blackmagic",
+      "mbed"
+    ]
+  },
+  "debug": {
+    "default_tools": [
+      "stlink"
+    ],
+    "jlink_device": "stm32l071cbt",
+	"openocd_board": "st_nucleo_l073rz",
+    "openocd_target": "stm32l0_dual_bank",
+    "svd_path": "STM32L07x.svd"
+  },
+  "url": "https://developer.mbed.org/platforms/ST-Discovery-LRWAN1/",
+  "vendor": "ST"
+}
