@@ -15,6 +15,8 @@ float currentValue = 0;
 float maxValue = 0;
 float minValue = RAND_MAX;
 long lastsend = 0;
+HardwareTimer *timer3 = new HardwareTimer(TIM3); // Use TIM3
+HardwareTimer *timer2 = new HardwareTimer(TIM2); // Use TIM2
 
 void measureTemp()
 {
@@ -53,8 +55,25 @@ void resetCallback(GroupObject& go)
     }
 }
 
+void setupPwmChannels(){
+    pinMode(PB11, OUTPUT); //R
+    pinMode(PB10, OUTPUT); //G
+    pinMode(PB1, OUTPUT); //B
+    pinMode(PB0, OUTPUT); //WW
+    pinMode(PA7, OUTPUT); //W
+
+    timer2->setPWM(4, PB11, 15000, 50); // R
+    timer2->setPWM(3, PB10, 15000, 50); // G
+
+    timer3->setPWM(4, PB1, 15000, 50); // B
+    timer3->setPWM(3, PB0, 15000, 50); // WW
+    timer3->setPWM(2, PA7, 15000, 50); // W
+}
+
 void setup()
 {
+    setupPwmChannels();
+
     Serial.begin(115200);
     ArduinoPlatform::SerialDebug = &Serial;
 
