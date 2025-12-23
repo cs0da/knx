@@ -4,6 +4,8 @@
 #include "CCTMixer.h"
 #include "Helper.h"
 #include "SafeSwitch.h"
+#include "adc_driver.h"
+#include "LedPwm.h"
 
 #if MASK_VERSION != 0x07B0 && (defined ARDUINO_ARCH_ESP8266 || defined ARDUINO_ARCH_ESP32)
 #include <WiFiManager.h>
@@ -23,8 +25,10 @@
 // #define goColorWarm knx.getGroupObject(8) // DPT_Percent_U8
 // #define goColorCold knx.getGroupObject(9) // DPT_Percent_U8
 
-const unsigned int PwmFrequency = 15000;
-const uint8_t PwmRefreshInMs = 10;
+#define pwmRefreshInMs 10
+#define errorSignalBlinkTimeMs 500
+#define errorResetTimeInMs 5000
+#define startupLedIndicationMs 5000
 
 #define pwmValueArraySize 6
 #define valueIndexR 0
@@ -42,87 +46,54 @@ struct KnxReceivedValue
 volatile KnxReceivedValue knxValues[pwmValueArraySize];
 
 volatile bool newColorPending = false;
-
 volatile bool newSwitchValuePending = false;
-
 bool powerOffPending = false;
-
-
-HardwareTimer timer3(TIM3); // Use TIM3
-HardwareTimer timer2(TIM2); // Use TIM2
+bool colorErrorResetHandled = true;
 
 //TODO: create the object after the KNX initialization. Also, try to save the lookup tables to eeprom or SPI NOR and load it from there
-ColorRamp5LUT colorRamp5(1200, 2.2f);
+ColorRamp5LUT colorRamp5(1200, 2.2f, {0, 200}, {0, 200}, {0, 200}, {0, 255}, {0, 255});
 CCTMixer colorTempMixer(2700, 4000, 6500);
 SafeSwitch powerSwitch(PB5, true);
 
-void initPwm(){
-    pinMode(PB11, OUTPUT); //R
-    pinMode(PB10, OUTPUT); //G
-    pinMode(PB1, OUTPUT); //B
-    pinMode(PB0, OUTPUT); //WW
-    pinMode(PA7, OUTPUT); //W
+void writeToSwitch(bool state)
+{
+    uint8_t* dataPtr = goSwitch.valueRef(); 
 
-    timer2.setPWM(4, PB11, PwmFrequency, 50); // R
-    timer2.setPWM(3, PB10, PwmFrequency, 50); // G
-    timer3.setPWM(4, PB1, PwmFrequency, 50); // B
-    timer3.setPWM(3, PB0, PwmFrequency, 50); // WW
-    timer3.setPWM(2, PA7, PwmFrequency, 50); // W
+    dataPtr[0] = state ? 1 : 0;
 }
 
-void setPwmR(u_int8_t  dutyCycle)
+void initAdcAndStart()
 {
-    // Get current auto-reload value (timer top)
-    uint32_t arr = timer2.getOverflow();
-
-    // Scale 0..255 to 0..arr
-    uint32_t ticks = (uint32_t) ((uint32_t)dutyCycle * arr) / 255U;
-
-    timer2.setCaptureCompare(4, ticks, TICK_COMPARE_FORMAT);
+    adcInitDualWithVref_NonBlocking(
+      50,
+      32,
+      ADC_SAMPLETIME_160CYCLES_5,   // long S/H; speed up later if needed
+      2,
+      0.005f,
+      50
+    );
+    // Start the first acquisition
+    adcRequestBatch();
 }
 
-void setPwmG(u_int8_t  dutyCycle)
+void initUserInterface()
 {
-    // Get current auto-reload value (timer top)
-    uint32_t arr = timer2.getOverflow();
+    // Notification LED
+    pinMode(PA9, OUTPUT);
+    digitalWrite(PA9, HIGH);
 
-    // Scale 0..255 to 0..arr
-    uint32_t ticks = (uint32_t) ((uint32_t)dutyCycle * arr) / 255U;
-    
-    timer2.setCaptureCompare(3, ticks, TICK_COMPARE_FORMAT);
+    // Button
+    pinMode(PB6, INPUT);
 }
 
-void setPwmB(u_int8_t  dutyCycle)
+inline void userLedOn()
 {
-    // Get current auto-reload value (timer top)
-    uint32_t arr = timer3.getOverflow();
-
-    // Scale 0..255 to 0..arr
-    uint32_t ticks = (uint32_t) ((uint32_t)dutyCycle * arr) / 255U;
-    
-    timer3.setCaptureCompare(4, ticks, TICK_COMPARE_FORMAT);
+    digitalWrite(PA9, HIGH);
 }
 
-void setPwmWW(u_int8_t  dutyCycle)
+inline void userLedOff()
 {
-    // Get current auto-reload value (timer top)
-    uint32_t arr = timer3.getOverflow();
-
-    // Scale 0..255 to 0..arr
-    uint32_t ticks = (uint32_t) ((uint32_t)dutyCycle * arr) / 255U;
-    
-    timer3.setCaptureCompare(3, ticks, TICK_COMPARE_FORMAT);
-}
-
-void setPwmW(u_int8_t dutyCycle)
-{
-    // Get current auto-reload value (timer top)
-    uint32_t arr = timer3.getOverflow();
-
-    // Scale 0..255 to 0..arr
-    uint32_t ticks = (uint32_t) ((uint32_t)dutyCycle * arr) / 255U;
-    
-    timer3.setCaptureCompare(2, ticks, TICK_COMPARE_FORMAT);
+    digitalWrite(PA9, LOW);
 }
 
 bool switchStatus()
@@ -140,8 +111,13 @@ bool switchStatus()
 
 void setSwitch(GroupObject& go)
 {
+    if (powerSwitch.isEmergencyLatched())
+    {
+        writeToSwitch(false);
+        return;
+    }
+
     const uint8_t* data = go.valueRef();
-    // size_t len = go.sizeInTelegram();
 
     uint8_t switchValue = data[0];
     uint8_t previousValue = knxValues[valueIndexSwitch].value;
@@ -227,21 +203,62 @@ void setColorTemperature(GroupObject& go)
     }
 }
 
+extern "C" void SystemClock_Config(void) {
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+
+  // Configure the main internal regulator output voltage
+  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+
+  // Configure external clock on PH0
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_BYPASS;  // For external clock input
+  // Use RCC_HSE_ON if using crystal oscillator
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLLMUL_4;      // Adjust multiplier
+  RCC_OscInitStruct.PLL.PLLDIV = RCC_PLLDIV_2;      // Adjust divider
+  
+  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK) {
+    Error_Handler();
+  }
+
+  // Configure the system clock
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK |
+                                RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK) {
+    Error_Handler();
+  }
+}
+
 void setup()
 {
+    initUserInterface();
+    initAdcAndStart();
     initPwm();
 
     powerSwitch.begin();
 
+    knxValues[valueIndexR].value = 127;
+    knxValues[valueIndexG].value = 127;
+    knxValues[valueIndexB].value = 127;
+    knxValues[valueIndexW].value = 127;
+    knxValues[valueIndexColorTemp].value = 4100;
+
     Serial.begin(115200);
     ArduinoPlatform::SerialDebug = &Serial;
 
-    randomSeed(millis());
+// #ifdef LIBRETINY
+//     srandom(millis());
+// #else
+//     randomSeed(millis());
+// #endif
 
-#if MASK_VERSION != 0x07B0 && (defined ARDUINO_ARCH_ESP8266 || defined ARDUINO_ARCH_ESP32)
-    WiFiManager wifiManager;
-    wifiManager.autoConnect("knx-demo");
-#endif
 
     // read adress table, association table, groupobject table and parameters from eeprom
     knx.readMemory();
@@ -295,6 +312,10 @@ void setup()
 
     // start the framework.
     knx.start();
+
+  // 4) (Optional) Prove HSI isn’t needed: turn it off after the switch
+  //    If your code keeps running and printing, you’re not using HSI.
+  __HAL_RCC_HSI_DISABLE();
 }
 
 void loop()
@@ -306,9 +327,95 @@ void loop()
     if (!knx.configured())
         return;
 
+    auto currentTime = millis();
+
     handlePowerSwitch();
 
-    handleColorChange();
+    handleColorChange(currentTime);
+
+    handleAdc();
+
+    handleUserInterface(currentTime);
+}
+
+void handleUserInterface(uint32_t currentTimeMs)
+{
+    static uint32_t lastPwmRefreshTimeMs = currentTimeMs;
+    static bool startupLedIndicationDone = false;
+
+    if (powerSwitch.isEmergencyLatched())
+    {
+        bool buttonState = digitalRead(PB6);
+
+        if (!buttonState)
+        {
+            if (currentTimeMs > lastPwmRefreshTimeMs + errorResetTimeInMs)
+            {
+                powerSwitch.emergencyReset();
+                userLedOff();
+                colorErrorResetHandled = false;
+            }
+        }
+        else
+        {
+            lastPwmRefreshTimeMs = currentTimeMs;
+        }
+    }
+    
+    if (!startupLedIndicationDone)
+    {
+        if (currentTimeMs > lastPwmRefreshTimeMs + startupLedIndicationMs)
+        {
+            userLedOff();
+            startupLedIndicationDone = true;
+        }
+    }
+}
+
+void triggerEmergencyShutdown()
+{
+    powerSwitch.emergencyTrip();
+    writeToSwitch(false);
+    knxValues[valueIndexSwitch].value = 0;
+}
+
+void checkSafetyMargins(AdcBatchResult result)
+{
+    // Over current
+    if (result.i_shunt > 8)
+    {
+        triggerEmergencyShutdown();
+        // TODO: Alert user.
+        // Implement handling of reset by the user button
+    }
+    
+    //over voltage
+    if (result.v_pa5 > 1.5)
+    {
+        triggerEmergencyShutdown();
+        // TODO: Alert user.
+    }
+}
+
+void handleAdc()
+{
+    adcPollProcess();
+
+    if (adcResultAvailable()) 
+    {
+        AdcBatchResult r = adcGetLastResult(); // clears the ready flag
+
+        // Serial.print("VDDA[V]: ");     Serial.print(r.vdda, 4);
+        // Serial.print("  Vmain[V]: ");  Serial.print(r.v_main, 3);
+        // Serial.print("  Vpa5[V]: ");   Serial.print(r.v_pa5, 4);
+        // Serial.print("  Vsh_mon[V]: ");Serial.print(r.v_shunt_mon, 4);
+        // Serial.print("  Ishunt[A]: "); Serial.println(r.i_shunt, 6);
+
+        checkSafetyMargins(r);
+
+        // Start the next batch (non-blocking)
+        adcRequestBatch();
+  }
 }
 
 void handlePowerSwitch()
@@ -347,13 +454,33 @@ void handlePowerSwitch()
     }
 }
 
-void handleColorChange()
+void errorSignal(uint32_t millis)
 {
-    static u_int32_t lastPwmRefreshTime;
+    static uint32_t lastRefreshTimeMs;
+    static bool ledState;
+
+    if (millis > lastRefreshTimeMs + errorSignalBlinkTimeMs)
+    {
+        lastRefreshTimeMs = millis;
+
+        if (ledState)
+        {
+            userLedOn();
+            ledState = false;
+        }
+        else
+        {
+            userLedOff();
+            ledState = true;
+        }
+    }
+}
+
+void handleColorChange(uint32_t currentTimeMs)
+{
+    static uint32_t lastPwmRefreshTimeMs;
     static bool emergancyHandled;
     static bool powerOffHandled;
-
-    auto currentTime = millis();
 
     if (!powerSwitch.isEmergencyLatched())
     {
@@ -391,8 +518,24 @@ void handleColorChange()
                 next.ww = cwww.warmOut;
                 next.w = cwww.coldOut;
 
-                // Smoothly retarget from the *current* levels to the new colour
-                colorRamp5.retargetFromCurrent(next, currentTime);
+                if(!colorErrorResetHandled)
+                {
+                    colorErrorResetHandled = true;
+                    
+                    ColorRamp5LUT::Channels channels;
+                    channels.r = 0;
+                    channels.g = 0;
+                    channels.b = 0;
+                    channels.ww = 0;
+                    channels.w = 0;
+
+                    colorRamp5.start(channels, next, currentTimeMs);
+                }
+                else
+                {
+                    // Smoothly retarget from the *current* levels to the new colour
+                    colorRamp5.retargetFromCurrent(next, currentTimeMs);
+                }
             }
             else if(powerOffPending && !powerOffHandled) 
             {
@@ -405,18 +548,18 @@ void handleColorChange()
                 next.ww = 0;
                 next.w = 0;
 
-                colorRamp5.retargetFromCurrent(next, currentTime);
+                colorRamp5.retargetFromCurrent(next, currentTimeMs);
             }
 
             if (colorRamp5.isActive())
             {
-                if ((lastPwmRefreshTime + PwmRefreshInMs) < currentTime)
+                if ((lastPwmRefreshTimeMs + pwmRefreshInMs) < currentTimeMs)
                 {
                     ColorRamp5LUT::Flags colorChanged;
 
-                    lastPwmRefreshTime = currentTime;
+                    lastPwmRefreshTimeMs = currentTimeMs;
 
-                    auto currentColors = colorRamp5.getWithFlags(currentTime, colorChanged);
+                    auto currentColors = colorRamp5.getWithFlags(currentTimeMs, colorChanged);
                     
                     // Valid value: 0..255
                     if (colorChanged.r) setPwmR(currentColors.r);
@@ -436,6 +579,10 @@ void handleColorChange()
         setPwmW(0);
 
         emergancyHandled = true;
+    }
+    else
+    {
+        errorSignal(currentTimeMs);
     }
     
     // if (switchStatus() != powerSwitch.isOn())
