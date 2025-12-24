@@ -16,6 +16,9 @@
 #define goColorRGB knx.getGroupObject(2) // DPT_Colour_RGB
 #define goColorTemperature knx.getGroupObject(3) // DPT_Absolute_Colour_Temperature
 #define goSwitch knx.getGroupObject(4) // DPT_Switch
+#define goBrightness knx.getGroupObject(5) // DPT_Switch
+#define goWhite knx.getGroupObject(6) // DPT_Switch
+#define goDimming knx.getGroupObject(7) // DPT_Switch
 /*
 #define goColorCCT knx.getGroupObject(4) // DPT_Brightness_Colour_Temperature_Transition ???
 #define goCurrent knx.getGroupObject(5) // DPT_Value_Curr
@@ -266,13 +269,8 @@ void setup()
     // print values of parameters if device is already configured
     if (knx.configured())
     {
-        Serial.println("Registering callback");
-        goColorRGBW.callback(setColorRgbw);
-        Serial.println("Setting data point type");
-        // register callback for reset GO
         goColorRGBW.dataPointType(DPT_Colour_RGBW);
-        Serial.println("Done");
-
+        goColorRGBW.callback(setColorRgbw);
         
         goColorRGB.dataPointType(DPT_Colour_RGB);
         goColorRGB.callback(setColorRgb);
@@ -282,6 +280,11 @@ void setup()
 
         goSwitch.dataPointType(DPT_Switch);
         goSwitch.callback(setSwitch);
+
+        //TODO: Implement callback!
+        goBrightness.dataPointType(DPT_Scaling); //0..100%
+        goWhite.dataPointType(DPT_DecimalFactor); //0..255
+        goDimming.dataPointType(DPT_Control_Dimming);
 
         /*
         // goColorWarm.dataPointType(DPT_Percent_U8); // Register callback to set the color - maybe not required, can be set if color temp

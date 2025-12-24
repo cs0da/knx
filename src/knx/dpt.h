@@ -359,6 +359,7 @@
 #define DPT_CombinedPosition Dpt(240, 800)
 #define DPT_StatusSAB Dpt(241, 800)
 #define DPT_Colour_RGBW Dpt(251, 600)
+#define DPT_Absolute_Colour_Temperature Dpt(7, 600)
 
 class Dpt
 {
