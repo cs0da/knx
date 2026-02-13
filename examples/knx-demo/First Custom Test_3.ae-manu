@@ -1,0 +1,2364 @@
+{
+  "$type": "Kaenx.Creator.Models.MainModel, Kaenx.Creator.Share",
+  "ProjectName": "First Custom Tesat",
+  "Guid": "992c8816-632d-4d7b-a174-8d76b976c406",
+  "FileName": "RGBCCTTest",
+  "Info": {
+    "$type": "Kaenx.Creator.Models.Info, Kaenx.Creator.Share",
+    "Name": "RGBCCT Led Strip Driver",
+    "SerialNumber": "0124",
+    "Version": 0,
+    "BusCurrent": 24,
+    "HasIndividualAddress": true,
+    "HasApplicationProgram": true,
+    "HasApplicationProgram2": false,
+    "IsPowerSupply": false,
+    "IsCoppler": false,
+    "IsIpEnabled": false,
+    "Text": [
+      {
+        "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+        "Language": {
+          "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+          "CultureCode": "en-US",
+          "Text": "Englisch"
+        },
+        "Text": "RGBCCT Led Strip Driver",
+        "Preview": "RGBCCT Led Strip Driver"
+      }
+    ],
+    "Description": [
+      {
+        "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+        "Language": {
+          "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+          "CultureCode": "en-US",
+          "Text": "Englisch"
+        },
+        "Text": "",
+        "Preview": ""
+      }
+    ],
+    "OrderNumber": "IA1234",
+    "IsRailMounted": false,
+    "AppNumber": 43982,
+    "MaskId": "MV-07B0"
+  },
+  "Application": {
+    "$type": "Kaenx.Creator.Models.AppVersion, Kaenx.Creator.Share",
+    "ParameterTypes": [
+      {
+        "$type": "Kaenx.Creator.Models.ParameterType, Kaenx.Creator.Share",
+        "UId": 1,
+        "Name": "startupTimeout",
+        "Type": 2,
+        "IsSizeManual": true,
+        "TranslateEnums": true,
+        "SizeInBit": 8,
+        "OtherValue": true,
+        "ExportInHeader": false,
+        "UIHint": "",
+        "BaggageUId": -1,
+        "Min": "0",
+        "Max": "255",
+        "Increment": "1",
+        "DisplayOffset": "0",
+        "DisplayFactor": "1",
+        "Enums": [
+          {
+            "$type": "Kaenx.Creator.Models.ParameterTypeEnum, Kaenx.Creator.Share",
+            "Name": "0 s",
+            "Value": 0,
+            "UseIcon": false,
+            "IconId": -1,
+            "Translate": true,
+            "Text": [
+              {
+                "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+                "Language": {
+                  "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+                  "CultureCode": "en-US",
+                  "Text": "Englisch"
+                },
+                "Text": "0 s",
+                "Preview": "0 s"
+              }
+            ]
+          },
+          {
+            "$type": "Kaenx.Creator.Models.ParameterTypeEnum, Kaenx.Creator.Share",
+            "Name": "1 s",
+            "Value": 1,
+            "UseIcon": false,
+            "IconId": -1,
+            "Translate": true,
+            "Text": [
+              {
+                "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+                "Language": {
+                  "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+                  "CultureCode": "en-US",
+                  "Text": "Englisch"
+                },
+                "Text": "1 s",
+                "Preview": "1 s"
+              }
+            ]
+          },
+          {
+            "$type": "Kaenx.Creator.Models.ParameterTypeEnum, Kaenx.Creator.Share",
+            "Name": "2 s",
+            "Value": 2,
+            "UseIcon": false,
+            "IconId": -1,
+            "Translate": true,
+            "Text": [
+              {
+                "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+                "Language": {
+                  "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+                  "CultureCode": "en-US",
+                  "Text": "Englisch"
+                },
+                "Text": "2 s",
+                "Preview": "2 s"
+              }
+            ]
+          },
+          {
+            "$type": "Kaenx.Creator.Models.ParameterTypeEnum, Kaenx.Creator.Share",
+            "Name": "3 s",
+            "Value": 3,
+            "UseIcon": false,
+            "IconId": -1,
+            "Translate": true,
+            "Text": [
+              {
+                "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+                "Language": {
+                  "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+                  "CultureCode": "en-US",
+                  "Text": "Englisch"
+                },
+                "Text": "3 s",
+                "Preview": "3 s"
+              }
+            ]
+          },
+          {
+            "$type": "Kaenx.Creator.Models.ParameterTypeEnum, Kaenx.Creator.Share",
+            "Name": "4 s",
+            "Value": 4,
+            "UseIcon": false,
+            "IconId": -1,
+            "Translate": true,
+            "Text": [
+              {
+                "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+                "Language": {
+                  "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+                  "CultureCode": "en-US",
+                  "Text": "Englisch"
+                },
+                "Text": "4 s",
+                "Preview": "4 s"
+              }
+            ]
+          },
+          {
+            "$type": "Kaenx.Creator.Models.ParameterTypeEnum, Kaenx.Creator.Share",
+            "Name": "5 s",
+            "Value": 5,
+            "UseIcon": false,
+            "IconId": -1,
+            "Translate": true,
+            "Text": [
+              {
+                "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+                "Language": {
+                  "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+                  "CultureCode": "en-US",
+                  "Text": "Englisch"
+                },
+                "Text": "5 s",
+                "Preview": "5 s"
+              }
+            ]
+          },
+          {
+            "$type": "Kaenx.Creator.Models.ParameterTypeEnum, Kaenx.Creator.Share",
+            "Name": "6 s",
+            "Value": 6,
+            "UseIcon": false,
+            "IconId": -1,
+            "Translate": true,
+            "Text": [
+              {
+                "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+                "Language": {
+                  "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+                  "CultureCode": "en-US",
+                  "Text": "Englisch"
+                },
+                "Text": "6 s",
+                "Preview": "6 s"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "$type": "Kaenx.Creator.Models.ParameterType, Kaenx.Creator.Share",
+        "UId": 2,
+        "Name": "TempChange",
+        "Type": 2,
+        "IsSizeManual": true,
+        "TranslateEnums": true,
+        "SizeInBit": 8,
+        "OtherValue": true,
+        "ExportInHeader": false,
+        "UIHint": "",
+        "BaggageUId": -1,
+        "Min": "0",
+        "Max": "255",
+        "Increment": "1",
+        "DisplayOffset": "0",
+        "DisplayFactor": "1",
+        "Enums": [
+          {
+            "$type": "Kaenx.Creator.Models.ParameterTypeEnum, Kaenx.Creator.Share",
+            "Name": "Disabled",
+            "Value": 0,
+            "UseIcon": false,
+            "IconId": -1,
+            "Translate": true,
+            "Text": [
+              {
+                "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+                "Language": {
+                  "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+                  "CultureCode": "en-US",
+                  "Text": "Englisch"
+                },
+                "Text": "Disabled",
+                "Preview": "Disabled"
+              }
+            ]
+          },
+          {
+            "$type": "Kaenx.Creator.Models.ParameterTypeEnum, Kaenx.Creator.Share",
+            "Name": "0.1 K",
+            "Value": 1,
+            "UseIcon": false,
+            "IconId": -1,
+            "Translate": true,
+            "Text": [
+              {
+                "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+                "Language": {
+                  "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+                  "CultureCode": "en-US",
+                  "Text": "Englisch"
+                },
+                "Text": "0.1 K",
+                "Preview": "0.1 K"
+              }
+            ]
+          },
+          {
+            "$type": "Kaenx.Creator.Models.ParameterTypeEnum, Kaenx.Creator.Share",
+            "Name": "0.2 K",
+            "Value": 2,
+            "UseIcon": false,
+            "IconId": -1,
+            "Translate": true,
+            "Text": [
+              {
+                "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+                "Language": {
+                  "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+                  "CultureCode": "en-US",
+                  "Text": "Englisch"
+                },
+                "Text": "0.2 K",
+                "Preview": "0.2 K"
+              }
+            ]
+          },
+          {
+            "$type": "Kaenx.Creator.Models.ParameterTypeEnum, Kaenx.Creator.Share",
+            "Name": "0.3 K",
+            "Value": 3,
+            "UseIcon": false,
+            "IconId": -1,
+            "Translate": true,
+            "Text": [
+              {
+                "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+                "Language": {
+                  "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+                  "CultureCode": "en-US",
+                  "Text": "Englisch"
+                },
+                "Text": "0.3 K",
+                "Preview": "0.3 K"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "$type": "Kaenx.Creator.Models.ParameterType, Kaenx.Creator.Share",
+        "UId": 3,
+        "Name": "TempCycle",
+        "Type": 2,
+        "IsSizeManual": true,
+        "TranslateEnums": true,
+        "SizeInBit": 8,
+        "OtherValue": true,
+        "ExportInHeader": false,
+        "UIHint": "",
+        "BaggageUId": -1,
+        "Min": "0",
+        "Max": "255",
+        "Increment": "1",
+        "DisplayOffset": "0",
+        "DisplayFactor": "1",
+        "Enums": [
+          {
+            "$type": "Kaenx.Creator.Models.ParameterTypeEnum, Kaenx.Creator.Share",
+            "Name": "Disabled",
+            "Value": 0,
+            "UseIcon": false,
+            "IconId": -1,
+            "Translate": true,
+            "Text": [
+              {
+                "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+                "Language": {
+                  "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+                  "CultureCode": "en-US",
+                  "Text": "Englisch"
+                },
+                "Text": "Disabled",
+                "Preview": "Disabled"
+              }
+            ]
+          },
+          {
+            "$type": "Kaenx.Creator.Models.ParameterTypeEnum, Kaenx.Creator.Share",
+            "Name": "1 min",
+            "Value": 1,
+            "UseIcon": false,
+            "IconId": -1,
+            "Translate": true,
+            "Text": [
+              {
+                "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+                "Language": {
+                  "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+                  "CultureCode": "en-US",
+                  "Text": "Englisch"
+                },
+                "Text": "1 min",
+                "Preview": "1 min"
+              }
+            ]
+          },
+          {
+            "$type": "Kaenx.Creator.Models.ParameterTypeEnum, Kaenx.Creator.Share",
+            "Name": "2 min",
+            "Value": 2,
+            "UseIcon": false,
+            "IconId": -1,
+            "Translate": true,
+            "Text": [
+              {
+                "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+                "Language": {
+                  "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+                  "CultureCode": "en-US",
+                  "Text": "Englisch"
+                },
+                "Text": "2 min",
+                "Preview": "2 min"
+              }
+            ]
+          },
+          {
+            "$type": "Kaenx.Creator.Models.ParameterTypeEnum, Kaenx.Creator.Share",
+            "Name": "3 min",
+            "Value": 3,
+            "UseIcon": false,
+            "IconId": -1,
+            "Translate": true,
+            "Text": [
+              {
+                "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+                "Language": {
+                  "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+                  "CultureCode": "en-US",
+                  "Text": "Englisch"
+                },
+                "Text": "3 min",
+                "Preview": "3 min"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "$type": "Kaenx.Creator.Models.ParameterType, Kaenx.Creator.Share",
+        "UId": 4,
+        "Name": "TempAbgleich",
+        "Type": 9,
+        "IsSizeManual": true,
+        "TranslateEnums": true,
+        "SizeInBit": 32,
+        "OtherValue": true,
+        "ExportInHeader": false,
+        "UIHint": "None",
+        "BaggageUId": -1,
+        "Min": "-50",
+        "Max": "50",
+        "Increment": "1",
+        "DisplayOffset": "0",
+        "DisplayFactor": "1",
+        "Enums": []
+      },
+      {
+        "$type": "Kaenx.Creator.Models.ParameterType, Kaenx.Creator.Share",
+        "UId": 5,
+        "Name": "TempSendMinMax",
+        "Type": 2,
+        "IsSizeManual": true,
+        "TranslateEnums": true,
+        "SizeInBit": 8,
+        "OtherValue": true,
+        "ExportInHeader": false,
+        "UIHint": "",
+        "BaggageUId": -1,
+        "Min": "0",
+        "Max": "255",
+        "Increment": "1",
+        "DisplayOffset": "0",
+        "DisplayFactor": "1",
+        "Enums": [
+          {
+            "$type": "Kaenx.Creator.Models.ParameterTypeEnum, Kaenx.Creator.Share",
+            "Name": "Disabled",
+            "Value": 0,
+            "UseIcon": false,
+            "IconId": -1,
+            "Translate": true,
+            "Text": [
+              {
+                "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+                "Language": {
+                  "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+                  "CultureCode": "en-US",
+                  "Text": "Englisch"
+                },
+                "Text": "Disabled",
+                "Preview": "Disabled"
+              }
+            ]
+          },
+          {
+            "$type": "Kaenx.Creator.Models.ParameterTypeEnum, Kaenx.Creator.Share",
+            "Name": "Send Enable",
+            "Value": 1,
+            "UseIcon": false,
+            "IconId": -1,
+            "Translate": true,
+            "Text": [
+              {
+                "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+                "Language": {
+                  "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+                  "CultureCode": "en-US",
+                  "Text": "Englisch"
+                },
+                "Text": "Send Enable",
+                "Preview": "Send Enable"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "Parameters": [
+      {
+        "$type": "Kaenx.Creator.Models.Parameter, Kaenx.Creator.Share",
+        "UId": 1,
+        "Id": 1,
+        "Name": "startupTimeout",
+        "SavePath": 1,
+        "MemoryId": 1,
+        "UnionId": -1,
+        "ParameterType": 1,
+        "Value": "0",
+        "IsInUnion": false,
+        "IsUnionDefault": false,
+        "Offset": 0,
+        "OffsetBit": 0,
+        "Text": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "Startup delaytime",
+            "Preview": "Startup delaytime"
+          }
+        ],
+        "Suffix": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "TranslationText": false,
+        "TranslationSuffix": false,
+        "Access": 2
+      },
+      {
+        "$type": "Kaenx.Creator.Models.Parameter, Kaenx.Creator.Share",
+        "UId": 2,
+        "Id": 2,
+        "Name": "Aender Senden",
+        "SavePath": 1,
+        "MemoryId": 1,
+        "UnionId": -1,
+        "ParameterType": 2,
+        "Value": "0",
+        "IsInUnion": false,
+        "IsUnionDefault": false,
+        "Offset": 1,
+        "OffsetBit": 0,
+        "Text": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "Send actual value after change of",
+            "Preview": "Send actual value after change of"
+          }
+        ],
+        "Suffix": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "TranslationText": false,
+        "TranslationSuffix": false,
+        "Access": 2
+      },
+      {
+        "$type": "Kaenx.Creator.Models.Parameter, Kaenx.Creator.Share",
+        "UId": 3,
+        "Id": 3,
+        "Name": "ZyklSenden",
+        "SavePath": 1,
+        "MemoryId": 1,
+        "UnionId": -1,
+        "ParameterType": 3,
+        "Value": "0",
+        "IsInUnion": false,
+        "IsUnionDefault": false,
+        "Offset": 2,
+        "OffsetBit": 0,
+        "Text": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "Send  actual temperature cyclically",
+            "Preview": "Send  actual temperature cyclically"
+          }
+        ],
+        "Suffix": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "TranslationText": false,
+        "TranslationSuffix": false,
+        "Access": 2
+      },
+      {
+        "$type": "Kaenx.Creator.Models.Parameter, Kaenx.Creator.Share",
+        "UId": 4,
+        "Id": 4,
+        "Name": "MinMaxSenden",
+        "SavePath": 1,
+        "MemoryId": 1,
+        "UnionId": -1,
+        "ParameterType": 5,
+        "Value": "0",
+        "IsInUnion": false,
+        "IsUnionDefault": false,
+        "Offset": 3,
+        "OffsetBit": 0,
+        "Text": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "Send min/max value",
+            "Preview": "Send min/max value"
+          }
+        ],
+        "Suffix": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "TranslationText": false,
+        "TranslationSuffix": false,
+        "Access": 2
+      },
+      {
+        "$type": "Kaenx.Creator.Models.Parameter, Kaenx.Creator.Share",
+        "UId": 5,
+        "Id": 5,
+        "Name": "Abgleich",
+        "SavePath": 1,
+        "MemoryId": 1,
+        "UnionId": -1,
+        "ParameterType": 4,
+        "Value": "0",
+        "IsInUnion": false,
+        "IsUnionDefault": false,
+        "Offset": 4,
+        "OffsetBit": 0,
+        "Text": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "Internal sensor correction value (value * 0.1 K)",
+            "Preview": "Internal sensor correction value (value * 0.1 K)"
+          }
+        ],
+        "Suffix": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "TranslationText": false,
+        "TranslationSuffix": false,
+        "Access": 2
+      }
+    ],
+    "ParameterRefs": [
+      {
+        "$type": "Kaenx.Creator.Models.ParameterRef, Kaenx.Creator.Share",
+        "UId": 1,
+        "Id": 1,
+        "DisplayOrder": -1,
+        "Name": "startupTimeout",
+        "IsAutoGenerated": true,
+        "Parameter": 1,
+        "OverwriteValue": false,
+        "OverwriteAccess": false,
+        "Access": 2,
+        "Value": "",
+        "TranslationText": false,
+        "TranslationSuffix": false,
+        "Text": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "Suffix": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "OverwriteText": false,
+        "OverwriteSuffix": false
+      },
+      {
+        "$type": "Kaenx.Creator.Models.ParameterRef, Kaenx.Creator.Share",
+        "UId": 2,
+        "Id": 2,
+        "DisplayOrder": -1,
+        "Name": "Aender Senden",
+        "IsAutoGenerated": true,
+        "Parameter": 2,
+        "OverwriteValue": false,
+        "OverwriteAccess": false,
+        "Access": 2,
+        "Value": "",
+        "TranslationText": false,
+        "TranslationSuffix": false,
+        "Text": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "Suffix": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "OverwriteText": false,
+        "OverwriteSuffix": false
+      },
+      {
+        "$type": "Kaenx.Creator.Models.ParameterRef, Kaenx.Creator.Share",
+        "UId": 3,
+        "Id": 3,
+        "DisplayOrder": -1,
+        "Name": "ZyklSenden",
+        "IsAutoGenerated": true,
+        "Parameter": 3,
+        "OverwriteValue": false,
+        "OverwriteAccess": false,
+        "Access": 2,
+        "Value": "",
+        "TranslationText": false,
+        "TranslationSuffix": false,
+        "Text": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "Suffix": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "OverwriteText": false,
+        "OverwriteSuffix": false
+      },
+      {
+        "$type": "Kaenx.Creator.Models.ParameterRef, Kaenx.Creator.Share",
+        "UId": 4,
+        "Id": 4,
+        "DisplayOrder": -1,
+        "Name": "MinMaxSenden",
+        "IsAutoGenerated": true,
+        "Parameter": 4,
+        "OverwriteValue": false,
+        "OverwriteAccess": false,
+        "Access": 2,
+        "Value": "",
+        "TranslationText": false,
+        "TranslationSuffix": false,
+        "Text": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "Suffix": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "OverwriteText": false,
+        "OverwriteSuffix": false
+      },
+      {
+        "$type": "Kaenx.Creator.Models.ParameterRef, Kaenx.Creator.Share",
+        "UId": 5,
+        "Id": 5,
+        "DisplayOrder": -1,
+        "Name": "Abgleich",
+        "IsAutoGenerated": true,
+        "Parameter": 5,
+        "OverwriteValue": false,
+        "OverwriteAccess": false,
+        "Access": 2,
+        "Value": "",
+        "TranslationText": false,
+        "TranslationSuffix": false,
+        "Text": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "Suffix": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "OverwriteText": false,
+        "OverwriteSuffix": false
+      }
+    ],
+    "ComObjects": [
+      {
+        "$type": "Kaenx.Creator.Models.ComObject, Kaenx.Creator.Share",
+        "UId": 5,
+        "Id": 1,
+        "Name": "RGBW value",
+        "Text": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "RGBW value",
+            "Preview": "RGBW value"
+          }
+        ],
+        "TranslationText": false,
+        "FunctionText": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "RGBW value",
+            "Preview": "RGBW value"
+          }
+        ],
+        "TranslationFunctionText": false,
+        "Number": 1,
+        "FlagRead": true,
+        "FlagWrite": true,
+        "FlagTrans": false,
+        "FlagComm": true,
+        "FlagUpdate": true,
+        "FlagOnInit": false,
+        "TypeValue": null,
+        "HasDpt": true,
+        "HasDpts": true,
+        "ObjectSize": 48,
+        "SubTypeNumber": "600",
+        "SubType": {
+          "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+          "Name": "251.600 RGBW value 4x(0..100%)",
+          "Number": "600",
+          "ParentNumber": "251"
+        },
+        "TypeNumber": "251",
+        "Type": {
+          "$type": "Kaenx.Creator.Models.DataPointType, Kaenx.Creator.Share",
+          "Name": "251.xxx Colour RGBW",
+          "Number": "251",
+          "Size": 48,
+          "SubTypes": [
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "251.600 RGBW value 4x(0..100%)",
+              "Number": "600",
+              "ParentNumber": "251"
+            }
+          ]
+        },
+        "UseTextParameter": false,
+        "ParameterRef": 0
+      },
+      {
+        "$type": "Kaenx.Creator.Models.ComObject, Kaenx.Creator.Share",
+        "UId": 1,
+        "Id": 2,
+        "Name": "RGB value",
+        "Text": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "RGB value",
+            "Preview": "RGB value"
+          }
+        ],
+        "TranslationText": false,
+        "FunctionText": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "RGB value",
+            "Preview": "RGB value"
+          }
+        ],
+        "TranslationFunctionText": false,
+        "Number": 2,
+        "FlagRead": true,
+        "FlagWrite": true,
+        "FlagTrans": false,
+        "FlagComm": true,
+        "FlagUpdate": true,
+        "FlagOnInit": false,
+        "TypeValue": null,
+        "HasDpt": true,
+        "HasDpts": true,
+        "ObjectSize": 24,
+        "SubTypeNumber": "600",
+        "SubType": {
+          "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+          "Name": "232.600 RGB value 3x(0..255)",
+          "Number": "600",
+          "ParentNumber": "232"
+        },
+        "TypeNumber": "232",
+        "Type": {
+          "$type": "Kaenx.Creator.Models.DataPointType, Kaenx.Creator.Share",
+          "Name": "232.xxx 3-byte colour RGB",
+          "Number": "232",
+          "Size": 24,
+          "SubTypes": [
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "232.600 RGB value 3x(0..255)",
+              "Number": "600",
+              "ParentNumber": "232"
+            }
+          ]
+        },
+        "UseTextParameter": false,
+        "ParameterRef": 0
+      },
+      {
+        "$type": "Kaenx.Creator.Models.ComObject, Kaenx.Creator.Share",
+        "UId": 2,
+        "Id": 3,
+        "Name": "Color temperature value",
+        "Text": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "Color temperature value",
+            "Preview": "Color temperature value"
+          }
+        ],
+        "TranslationText": false,
+        "FunctionText": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "Color temperature value",
+            "Preview": "Color temperature value"
+          }
+        ],
+        "TranslationFunctionText": false,
+        "Number": 3,
+        "FlagRead": true,
+        "FlagWrite": true,
+        "FlagTrans": false,
+        "FlagComm": true,
+        "FlagUpdate": true,
+        "FlagOnInit": false,
+        "TypeValue": null,
+        "HasDpt": true,
+        "HasDpts": true,
+        "ObjectSize": 16,
+        "SubTypeNumber": "600",
+        "SubType": {
+          "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+          "Name": "7.600 absolute colour temperature (K)",
+          "Number": "600",
+          "ParentNumber": "7"
+        },
+        "TypeNumber": "7",
+        "Type": {
+          "$type": "Kaenx.Creator.Models.DataPointType, Kaenx.Creator.Share",
+          "Name": "7.xxx 2-byte unsigned value",
+          "Number": "7",
+          "Size": 16,
+          "SubTypes": [
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "7.001 pulses",
+              "Number": "1",
+              "ParentNumber": "7"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "7.002 time (ms)",
+              "Number": "2",
+              "ParentNumber": "7"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "7.003 time (10 ms)",
+              "Number": "3",
+              "ParentNumber": "7"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "7.004 time (100 ms)",
+              "Number": "4",
+              "ParentNumber": "7"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "7.005 time (s)",
+              "Number": "5",
+              "ParentNumber": "7"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "7.006 time (min)",
+              "Number": "6",
+              "ParentNumber": "7"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "7.007 time (h)",
+              "Number": "7",
+              "ParentNumber": "7"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "7.010 property data type",
+              "Number": "10",
+              "ParentNumber": "7"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "7.011 length (mm)",
+              "Number": "11",
+              "ParentNumber": "7"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "7.012 current (mA)",
+              "Number": "12",
+              "ParentNumber": "7"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "7.013 brightness (lux)",
+              "Number": "13",
+              "ParentNumber": "7"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "7.600 absolute colour temperature (K)",
+              "Number": "600",
+              "ParentNumber": "7"
+            }
+          ]
+        },
+        "UseTextParameter": false,
+        "ParameterRef": 0
+      },
+      {
+        "$type": "Kaenx.Creator.Models.ComObject, Kaenx.Creator.Share",
+        "UId": 3,
+        "Id": 4,
+        "Name": "Power switch",
+        "Text": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "Power switch",
+            "Preview": "Power switch"
+          }
+        ],
+        "TranslationText": false,
+        "FunctionText": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "Power switch",
+            "Preview": "Power switch"
+          }
+        ],
+        "TranslationFunctionText": false,
+        "Number": 4,
+        "FlagRead": true,
+        "FlagWrite": true,
+        "FlagTrans": false,
+        "FlagComm": true,
+        "FlagUpdate": true,
+        "FlagOnInit": false,
+        "TypeValue": null,
+        "HasDpt": true,
+        "HasDpts": true,
+        "ObjectSize": 1,
+        "SubTypeNumber": "1",
+        "SubType": {
+          "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+          "Name": "1.001 switch",
+          "Number": "1",
+          "ParentNumber": "1"
+        },
+        "TypeNumber": "1",
+        "Type": {
+          "$type": "Kaenx.Creator.Models.DataPointType, Kaenx.Creator.Share",
+          "Name": "1.xxx 1-bit",
+          "Number": "1",
+          "Size": 1,
+          "SubTypes": [
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "1.001 switch",
+              "Number": "1",
+              "ParentNumber": "1"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "1.002 boolean",
+              "Number": "2",
+              "ParentNumber": "1"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "1.003 enable",
+              "Number": "3",
+              "ParentNumber": "1"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "1.004 ramp",
+              "Number": "4",
+              "ParentNumber": "1"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "1.005 alarm",
+              "Number": "5",
+              "ParentNumber": "1"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "1.006 binary value",
+              "Number": "6",
+              "ParentNumber": "1"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "1.007 step",
+              "Number": "7",
+              "ParentNumber": "1"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "1.008 up/down",
+              "Number": "8",
+              "ParentNumber": "1"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "1.009 open/close",
+              "Number": "9",
+              "ParentNumber": "1"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "1.010 start/stop",
+              "Number": "10",
+              "ParentNumber": "1"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "1.011 state",
+              "Number": "11",
+              "ParentNumber": "1"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "1.012 invert",
+              "Number": "12",
+              "ParentNumber": "1"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "1.013 dim send style",
+              "Number": "13",
+              "ParentNumber": "1"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "1.014 input source",
+              "Number": "14",
+              "ParentNumber": "1"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "1.015 reset",
+              "Number": "15",
+              "ParentNumber": "1"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "1.016 acknowledge",
+              "Number": "16",
+              "ParentNumber": "1"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "1.017 trigger",
+              "Number": "17",
+              "ParentNumber": "1"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "1.018 occupancy",
+              "Number": "18",
+              "ParentNumber": "1"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "1.019 window/door",
+              "Number": "19",
+              "ParentNumber": "1"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "1.021 logical function",
+              "Number": "21",
+              "ParentNumber": "1"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "1.022 scene",
+              "Number": "22",
+              "ParentNumber": "1"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "1.023 shutter/blinds mode",
+              "Number": "23",
+              "ParentNumber": "1"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "1.024 day/night",
+              "Number": "24",
+              "ParentNumber": "1"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "1.100 cooling/heating",
+              "Number": "100",
+              "ParentNumber": "1"
+            }
+          ]
+        },
+        "UseTextParameter": false,
+        "ParameterRef": 0
+      },
+      {
+        "$type": "Kaenx.Creator.Models.ComObject, Kaenx.Creator.Share",
+        "UId": 4,
+        "Id": 5,
+        "Name": "Brightness",
+        "Text": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "Brightness",
+            "Preview": "Brightness"
+          }
+        ],
+        "TranslationText": false,
+        "FunctionText": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "Brightness",
+            "Preview": "Brightness"
+          }
+        ],
+        "TranslationFunctionText": false,
+        "Number": 5,
+        "FlagRead": true,
+        "FlagWrite": true,
+        "FlagTrans": false,
+        "FlagComm": true,
+        "FlagUpdate": true,
+        "FlagOnInit": false,
+        "TypeValue": null,
+        "HasDpt": true,
+        "HasDpts": true,
+        "ObjectSize": 8,
+        "SubTypeNumber": "1",
+        "SubType": {
+          "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+          "Name": "5.001 percentage (0..100%)",
+          "Number": "1",
+          "ParentNumber": "5"
+        },
+        "TypeNumber": "5",
+        "Type": {
+          "$type": "Kaenx.Creator.Models.DataPointType, Kaenx.Creator.Share",
+          "Name": "5.xxx 8-bit unsigned value",
+          "Number": "5",
+          "Size": 8,
+          "SubTypes": [
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "5.001 percentage (0..100%)",
+              "Number": "1",
+              "ParentNumber": "5"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "5.003 angle (degrees)",
+              "Number": "3",
+              "ParentNumber": "5"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "5.004 percentage (0..255%)",
+              "Number": "4",
+              "ParentNumber": "5"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "5.005 ratio (0..255)",
+              "Number": "5",
+              "ParentNumber": "5"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "5.006 tariff (0..255)",
+              "Number": "6",
+              "ParentNumber": "5"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "5.010 counter pulses (0..255)",
+              "Number": "10",
+              "ParentNumber": "5"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "5.100 fan stage (0..255)",
+              "Number": "100",
+              "ParentNumber": "5"
+            }
+          ]
+        },
+        "UseTextParameter": false,
+        "ParameterRef": 0
+      },
+      {
+        "$type": "Kaenx.Creator.Models.ComObject, Kaenx.Creator.Share",
+        "UId": 6,
+        "Id": 6,
+        "Name": "White",
+        "Text": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "White",
+            "Preview": "White"
+          }
+        ],
+        "TranslationText": false,
+        "FunctionText": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "White",
+            "Preview": "White"
+          }
+        ],
+        "TranslationFunctionText": false,
+        "Number": 6,
+        "FlagRead": true,
+        "FlagWrite": true,
+        "FlagTrans": false,
+        "FlagComm": true,
+        "FlagUpdate": true,
+        "FlagOnInit": false,
+        "TypeValue": null,
+        "HasDpt": true,
+        "HasDpts": true,
+        "ObjectSize": 8,
+        "SubTypeNumber": "5",
+        "SubType": {
+          "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+          "Name": "5.005 ratio (0..255)",
+          "Number": "5",
+          "ParentNumber": "5"
+        },
+        "TypeNumber": "5",
+        "Type": {
+          "$type": "Kaenx.Creator.Models.DataPointType, Kaenx.Creator.Share",
+          "Name": "5.xxx 8-bit unsigned value",
+          "Number": "5",
+          "Size": 8,
+          "SubTypes": [
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "5.001 percentage (0..100%)",
+              "Number": "1",
+              "ParentNumber": "5"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "5.003 angle (degrees)",
+              "Number": "3",
+              "ParentNumber": "5"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "5.004 percentage (0..255%)",
+              "Number": "4",
+              "ParentNumber": "5"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "5.005 ratio (0..255)",
+              "Number": "5",
+              "ParentNumber": "5"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "5.006 tariff (0..255)",
+              "Number": "6",
+              "ParentNumber": "5"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "5.010 counter pulses (0..255)",
+              "Number": "10",
+              "ParentNumber": "5"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "5.100 fan stage (0..255)",
+              "Number": "100",
+              "ParentNumber": "5"
+            }
+          ]
+        },
+        "UseTextParameter": false,
+        "ParameterRef": 0
+      },
+      {
+        "$type": "Kaenx.Creator.Models.ComObject, Kaenx.Creator.Share",
+        "UId": 7,
+        "Id": 7,
+        "Name": "Dimming",
+        "Text": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "Dimming",
+            "Preview": "Dimming"
+          }
+        ],
+        "TranslationText": false,
+        "FunctionText": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "Dimming",
+            "Preview": "Dimming"
+          }
+        ],
+        "TranslationFunctionText": false,
+        "Number": 7,
+        "FlagRead": true,
+        "FlagWrite": true,
+        "FlagTrans": false,
+        "FlagComm": true,
+        "FlagUpdate": true,
+        "FlagOnInit": false,
+        "TypeValue": null,
+        "HasDpt": true,
+        "HasDpts": true,
+        "ObjectSize": 4,
+        "SubTypeNumber": "7",
+        "SubType": {
+          "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+          "Name": "3.007 dimming control",
+          "Number": "7",
+          "ParentNumber": "3"
+        },
+        "TypeNumber": "3",
+        "Type": {
+          "$type": "Kaenx.Creator.Models.DataPointType, Kaenx.Creator.Share",
+          "Name": "3.xxx 3-bit controlled",
+          "Number": "3",
+          "Size": 4,
+          "SubTypes": [
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "3.007 dimming control",
+              "Number": "7",
+              "ParentNumber": "3"
+            },
+            {
+              "$type": "Kaenx.Creator.Models.DataPointSubType, Kaenx.Creator.Share",
+              "Name": "3.008 blind control",
+              "Number": "8",
+              "ParentNumber": "3"
+            }
+          ]
+        },
+        "UseTextParameter": false,
+        "ParameterRef": 0
+      }
+    ],
+    "ComObjectRefs": [
+      {
+        "$type": "Kaenx.Creator.Models.ComObjectRef, Kaenx.Creator.Share",
+        "IsAutoGenerated": true,
+        "UId": 5,
+        "Id": 0,
+        "Name": "RGBW value",
+        "Text": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "TranslationText": false,
+        "OverwriteText": false,
+        "FunctionText": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "TranslationFunctionText": false,
+        "OverwriteFunctionText": false,
+        "OverwriteDpt": false,
+        "OverwriteDpst": false,
+        "SubTypeNumber": null,
+        "SubType": null,
+        "TypeNumber": null,
+        "Type": null,
+        "OverwriteOS": false,
+        "ObjectSize": 1,
+        "ComObject": 5,
+        "FlagRead": false,
+        "OverwriteFR": false,
+        "FlagWrite": false,
+        "OverwriteFW": false,
+        "FlagTrans": false,
+        "OverwriteFT": false,
+        "FlagComm": false,
+        "OverwriteFC": false,
+        "FlagUpdate": false,
+        "OverwriteFU": false,
+        "FlagOnInit": false,
+        "OverwriteFOI": false,
+        "UseTextParameter": false,
+        "ParameterRef": 0
+      },
+      {
+        "$type": "Kaenx.Creator.Models.ComObjectRef, Kaenx.Creator.Share",
+        "IsAutoGenerated": true,
+        "UId": 1,
+        "Id": -1,
+        "Name": "RGB value",
+        "Text": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "TranslationText": false,
+        "OverwriteText": false,
+        "FunctionText": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "TranslationFunctionText": false,
+        "OverwriteFunctionText": false,
+        "OverwriteDpt": false,
+        "OverwriteDpst": false,
+        "SubTypeNumber": null,
+        "SubType": null,
+        "TypeNumber": null,
+        "Type": null,
+        "OverwriteOS": false,
+        "ObjectSize": 1,
+        "ComObject": 1,
+        "FlagRead": false,
+        "OverwriteFR": false,
+        "FlagWrite": false,
+        "OverwriteFW": false,
+        "FlagTrans": false,
+        "OverwriteFT": false,
+        "FlagComm": false,
+        "OverwriteFC": false,
+        "FlagUpdate": false,
+        "OverwriteFU": false,
+        "FlagOnInit": false,
+        "OverwriteFOI": false,
+        "UseTextParameter": false,
+        "ParameterRef": 0
+      },
+      {
+        "$type": "Kaenx.Creator.Models.ComObjectRef, Kaenx.Creator.Share",
+        "IsAutoGenerated": true,
+        "UId": 2,
+        "Id": -1,
+        "Name": "Color temperature value",
+        "Text": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "TranslationText": false,
+        "OverwriteText": false,
+        "FunctionText": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "TranslationFunctionText": false,
+        "OverwriteFunctionText": false,
+        "OverwriteDpt": false,
+        "OverwriteDpst": false,
+        "SubTypeNumber": null,
+        "SubType": null,
+        "TypeNumber": null,
+        "Type": null,
+        "OverwriteOS": false,
+        "ObjectSize": 1,
+        "ComObject": 2,
+        "FlagRead": false,
+        "OverwriteFR": false,
+        "FlagWrite": false,
+        "OverwriteFW": false,
+        "FlagTrans": false,
+        "OverwriteFT": false,
+        "FlagComm": false,
+        "OverwriteFC": false,
+        "FlagUpdate": false,
+        "OverwriteFU": false,
+        "FlagOnInit": false,
+        "OverwriteFOI": false,
+        "UseTextParameter": false,
+        "ParameterRef": 0
+      },
+      {
+        "$type": "Kaenx.Creator.Models.ComObjectRef, Kaenx.Creator.Share",
+        "IsAutoGenerated": true,
+        "UId": 3,
+        "Id": -1,
+        "Name": "Power switch",
+        "Text": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "TranslationText": false,
+        "OverwriteText": false,
+        "FunctionText": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "TranslationFunctionText": false,
+        "OverwriteFunctionText": false,
+        "OverwriteDpt": false,
+        "OverwriteDpst": false,
+        "SubTypeNumber": null,
+        "SubType": null,
+        "TypeNumber": null,
+        "Type": null,
+        "OverwriteOS": false,
+        "ObjectSize": 1,
+        "ComObject": 3,
+        "FlagRead": false,
+        "OverwriteFR": false,
+        "FlagWrite": false,
+        "OverwriteFW": false,
+        "FlagTrans": false,
+        "OverwriteFT": false,
+        "FlagComm": false,
+        "OverwriteFC": false,
+        "FlagUpdate": false,
+        "OverwriteFU": false,
+        "FlagOnInit": false,
+        "OverwriteFOI": false,
+        "UseTextParameter": false,
+        "ParameterRef": 0
+      },
+      {
+        "$type": "Kaenx.Creator.Models.ComObjectRef, Kaenx.Creator.Share",
+        "IsAutoGenerated": true,
+        "UId": 4,
+        "Id": -1,
+        "Name": "Brightness",
+        "Text": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "TranslationText": false,
+        "OverwriteText": false,
+        "FunctionText": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "TranslationFunctionText": false,
+        "OverwriteFunctionText": false,
+        "OverwriteDpt": false,
+        "OverwriteDpst": false,
+        "SubTypeNumber": null,
+        "SubType": null,
+        "TypeNumber": null,
+        "Type": null,
+        "OverwriteOS": false,
+        "ObjectSize": 1,
+        "ComObject": 4,
+        "FlagRead": false,
+        "OverwriteFR": false,
+        "FlagWrite": false,
+        "OverwriteFW": false,
+        "FlagTrans": false,
+        "OverwriteFT": false,
+        "FlagComm": true,
+        "OverwriteFC": false,
+        "FlagUpdate": false,
+        "OverwriteFU": false,
+        "FlagOnInit": false,
+        "OverwriteFOI": false,
+        "UseTextParameter": false,
+        "ParameterRef": 0
+      },
+      {
+        "$type": "Kaenx.Creator.Models.ComObjectRef, Kaenx.Creator.Share",
+        "IsAutoGenerated": true,
+        "UId": 6,
+        "Id": -1,
+        "Name": "White",
+        "Text": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "TranslationText": false,
+        "OverwriteText": false,
+        "FunctionText": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "TranslationFunctionText": false,
+        "OverwriteFunctionText": false,
+        "OverwriteDpt": false,
+        "OverwriteDpst": false,
+        "SubTypeNumber": null,
+        "SubType": null,
+        "TypeNumber": null,
+        "Type": null,
+        "OverwriteOS": false,
+        "ObjectSize": 1,
+        "ComObject": 6,
+        "FlagRead": false,
+        "OverwriteFR": false,
+        "FlagWrite": false,
+        "OverwriteFW": false,
+        "FlagTrans": false,
+        "OverwriteFT": false,
+        "FlagComm": true,
+        "OverwriteFC": false,
+        "FlagUpdate": false,
+        "OverwriteFU": false,
+        "FlagOnInit": false,
+        "OverwriteFOI": false,
+        "UseTextParameter": false,
+        "ParameterRef": 0
+      },
+      {
+        "$type": "Kaenx.Creator.Models.ComObjectRef, Kaenx.Creator.Share",
+        "IsAutoGenerated": true,
+        "UId": 7,
+        "Id": -1,
+        "Name": "Dimming",
+        "Text": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "TranslationText": false,
+        "OverwriteText": false,
+        "FunctionText": [
+          {
+            "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+            "Language": {
+              "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+              "CultureCode": "en-US",
+              "Text": "Englisch"
+            },
+            "Text": "",
+            "Preview": ""
+          }
+        ],
+        "TranslationFunctionText": false,
+        "OverwriteFunctionText": false,
+        "OverwriteDpt": false,
+        "OverwriteDpst": false,
+        "SubTypeNumber": null,
+        "SubType": null,
+        "TypeNumber": null,
+        "Type": null,
+        "OverwriteOS": false,
+        "ObjectSize": 1,
+        "ComObject": 7,
+        "FlagRead": false,
+        "OverwriteFR": false,
+        "FlagWrite": false,
+        "OverwriteFW": false,
+        "FlagTrans": false,
+        "OverwriteFT": false,
+        "FlagComm": true,
+        "OverwriteFC": false,
+        "FlagUpdate": false,
+        "OverwriteFU": false,
+        "FlagOnInit": false,
+        "OverwriteFOI": false,
+        "UseTextParameter": false,
+        "ParameterRef": 0
+      }
+    ],
+    "Memories": [
+      {
+        "$type": "Kaenx.Creator.Models.Memory, Kaenx.Creator.Share",
+        "StartAddress": 0,
+        "UId": 1,
+        "Name": "Parameters",
+        "Address": 0,
+        "Size": 8,
+        "Offset": 0,
+        "IsAutoPara": false,
+        "IsAutoOrder": true,
+        "IsAutoSize": false,
+        "IsAutoLoad": true,
+        "Type": 1
+      }
+    ],
+    "Modules": [],
+    "Messages": [],
+    "Unions": [],
+    "Languages": [
+      {
+        "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+        "CultureCode": "en-US",
+        "Text": "Englisch"
+      }
+    ],
+    "Helptexts": [],
+    "Allocators": [],
+    "OpenKnxModules": [],
+    "Dynamics": [
+      {
+        "$type": "Kaenx.Creator.Models.Dynamic.DynamicMain, Kaenx.Creator.Share",
+        "IsExpanded": true,
+        "Name": "Root Knoten",
+        "Items": [
+          {
+            "$type": "Kaenx.Creator.Models.Dynamic.DynChannelIndependent, Kaenx.Creator.Share",
+            "IsExpanded": true,
+            "Name": "",
+            "Items": [
+              {
+                "$type": "Kaenx.Creator.Models.Dynamic.DynParaBlock, Kaenx.Creator.Share",
+                "IsExpanded": false,
+                "Id": 1,
+                "Name": "ParameterPage",
+                "Text": [
+                  {
+                    "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+                    "Language": {
+                      "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+                      "CultureCode": "en-US",
+                      "Text": "Englisch"
+                    },
+                    "Text": "Allgemeine Parameter",
+                    "Preview": "Allgemeine Parameter"
+                  }
+                ],
+                "TranslationText": false,
+                "UseParameterRef": false,
+                "ParameterRef": 0,
+                "UseTextParameter": false,
+                "TextRef": 0,
+                "Layout": 0,
+                "IsInline": false,
+                "UseIcon": false,
+                "IconId": -1,
+                "Access": 2,
+                "ShowInComObjectTree": false,
+                "Items": [
+                  {
+                    "$type": "Kaenx.Creator.Models.Dynamic.DynParameter, Kaenx.Creator.Share",
+                    "IsExpanded": false,
+                    "Name": "stt",
+                    "ParameterRef": 1,
+                    "HasHelptext": false,
+                    "HelptextId": 0,
+                    "UseIcon": false,
+                    "IconId": -1,
+                    "Cell": null,
+                    "Items": null,
+                    "HelpText": null
+                  },
+                  {
+                    "$type": "Kaenx.Creator.Models.Dynamic.DynParameter, Kaenx.Creator.Share",
+                    "IsExpanded": false,
+                    "Name": "as",
+                    "ParameterRef": 2,
+                    "HasHelptext": false,
+                    "HelptextId": 0,
+                    "UseIcon": false,
+                    "IconId": -1,
+                    "Cell": null,
+                    "Items": null,
+                    "HelpText": null
+                  },
+                  {
+                    "$type": "Kaenx.Creator.Models.Dynamic.DynParameter, Kaenx.Creator.Share",
+                    "IsExpanded": false,
+                    "Name": "zk",
+                    "ParameterRef": 3,
+                    "HasHelptext": false,
+                    "HelptextId": 0,
+                    "UseIcon": false,
+                    "IconId": -1,
+                    "Cell": null,
+                    "Items": null,
+                    "HelpText": null
+                  },
+                  {
+                    "$type": "Kaenx.Creator.Models.Dynamic.DynParameter, Kaenx.Creator.Share",
+                    "IsExpanded": false,
+                    "Name": "mx",
+                    "ParameterRef": 4,
+                    "HasHelptext": false,
+                    "HelptextId": 0,
+                    "UseIcon": false,
+                    "IconId": -1,
+                    "Cell": null,
+                    "Items": null,
+                    "HelpText": null
+                  },
+                  {
+                    "$type": "Kaenx.Creator.Models.Dynamic.DynParameter, Kaenx.Creator.Share",
+                    "IsExpanded": false,
+                    "Name": "abl",
+                    "ParameterRef": 5,
+                    "HasHelptext": false,
+                    "HelptextId": 0,
+                    "UseIcon": false,
+                    "IconId": -1,
+                    "Cell": null,
+                    "Items": null,
+                    "HelpText": null
+                  },
+                  {
+                    "$type": "Kaenx.Creator.Models.Dynamic.DynComObject, Kaenx.Creator.Share",
+                    "IsExpanded": false,
+                    "Name": "rgbw",
+                    "ComObjectRef": 5,
+                    "Items": null
+                  },
+                  {
+                    "$type": "Kaenx.Creator.Models.Dynamic.DynComObject, Kaenx.Creator.Share",
+                    "IsExpanded": false,
+                    "Name": "rgb",
+                    "ComObjectRef": 1,
+                    "Items": null
+                  },
+                  {
+                    "$type": "Kaenx.Creator.Models.Dynamic.DynComObject, Kaenx.Creator.Share",
+                    "IsExpanded": false,
+                    "Name": "color temp",
+                    "ComObjectRef": 2,
+                    "Items": null
+                  },
+                  {
+                    "$type": "Kaenx.Creator.Models.Dynamic.DynComObject, Kaenx.Creator.Share",
+                    "IsExpanded": false,
+                    "Name": "Power switch",
+                    "ComObjectRef": 3,
+                    "Items": null
+                  },
+                  {
+                    "$type": "Kaenx.Creator.Models.Dynamic.DynComObject, Kaenx.Creator.Share",
+                    "IsExpanded": false,
+                    "Name": "Brightness",
+                    "ComObjectRef": 4,
+                    "Items": null
+                  },
+                  {
+                    "$type": "Kaenx.Creator.Models.Dynamic.DynComObject, Kaenx.Creator.Share",
+                    "IsExpanded": false,
+                    "Name": "White",
+                    "ComObjectRef": 6,
+                    "Items": null
+                  },
+                  {
+                    "$type": "Kaenx.Creator.Models.Dynamic.DynComObject, Kaenx.Creator.Share",
+                    "IsExpanded": false,
+                    "Name": "Dimming",
+                    "ComObjectRef": 7,
+                    "Items": null
+                  }
+                ],
+                "Rows": [],
+                "Columns": []
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "NamespaceVersion": 11,
+    "DefaultLanguage": "en-US",
+    "DefaultLanguageIndex": 0,
+    "Name": "RGBCCT Led Strip Driver TP",
+    "ReplacesVersions": null,
+    "Script": "",
+    "NameText": "V 7.11 RGBCCT Led Strip Driver TP",
+    "Text": [
+      {
+        "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+        "Language": {
+          "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+          "CultureCode": "en-US",
+          "Text": "Englisch"
+        },
+        "Text": "RGBCCT Led Strip Driver TP",
+        "Preview": "RGBCCT Led Strip Driver TP"
+      }
+    ],
+    "Number": 123,
+    "AddressTableMaxCount": 65000,
+    "AddressTableOffset": 0,
+    "AddressMemoryId": -1,
+    "AssociationTableMaxCount": 65000,
+    "AssociationTableOffset": 0,
+    "AssociationMemoryId": -1,
+    "ComObjectTableOffset": 0,
+    "ComObjectMemoryId": -1,
+    "IsParameterRefAuto": true,
+    "IsComObjectRefAuto": true,
+    "IsUnionActive": false,
+    "IsModulesActive": false,
+    "IsMessagesActive": false,
+    "IsMemSizeAuto": false,
+    "IsHelpActive": false,
+    "IsBusInterfaceActive": false,
+    "IsSecureActive": false,
+    "HasBusInterfaceRouter": false,
+    "BusInterfaceCounter": 4,
+    "Procedure": "<LoadProcedures>\r\n  <LoadProcedure MergeId=\"2\">\r\n    <LdCtrlRelSegment AppliesTo=\"full\" LsmIdx=\"4\" Size=\"8\" Mode=\"0\" Fill=\"0\" />\r\n  </LoadProcedure>\r\n  <LoadProcedure MergeId=\"4\">\r\n    <LdCtrlWriteRelMem ObjIdx=\"4\" Offset=\"0\" Size=\"8\" Verify=\"true\" />\r\n  </LoadProcedure>\r\n</LoadProcedures>",
+    "IsPreETS4": false,
+    "LastParameterId": 5,
+    "LastParameterRefId": 5,
+    "LastDynModuleId": 0,
+    "LastDynSeparatorId": 0,
+    "HighestComNumber": 4
+  },
+  "Catalog": [
+    {
+      "$type": "Kaenx.Creator.Models.CatalogItem, Kaenx.Creator.Share",
+      "Name": "Main Category (will not be exported)",
+      "Number": null,
+      "IsSection": true,
+      "Text": [],
+      "Items": [
+        {
+          "$type": "Kaenx.Creator.Models.CatalogItem, Kaenx.Creator.Share",
+          "Name": "Tools",
+          "Number": "1",
+          "IsSection": true,
+          "Text": [
+            {
+              "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+              "Language": {
+                "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+                "CultureCode": "en-US",
+                "Text": "Englisch"
+              },
+              "Text": "Geräte",
+              "Preview": "Geräte"
+            }
+          ],
+          "Items": [
+            {
+              "$type": "Kaenx.Creator.Models.CatalogItem, Kaenx.Creator.Share",
+              "Name": "RGBCCT Led Strip Driver",
+              "Number": "1",
+              "IsSection": false,
+              "Text": [
+                {
+                  "$type": "Kaenx.Creator.Models.Translation, Kaenx.Creator.Share",
+                  "Language": {
+                    "$type": "Kaenx.Creator.Models.Language, Kaenx.Creator.Share",
+                    "CultureCode": "en-US",
+                    "Text": "Englisch"
+                  },
+                  "Text": "",
+                  "Preview": ""
+                }
+              ],
+              "Items": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "Baggages": [],
+  "Icons": [],
+  "ImportVersion": 10,
+  "ManufacturerId": 250,
+  "IsOpenKnx": false
+}

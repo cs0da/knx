@@ -16,9 +16,9 @@
 #define goColorRGB knx.getGroupObject(2) // DPT_Colour_RGB
 #define goColorTemperature knx.getGroupObject(3) // DPT_Absolute_Colour_Temperature
 #define goSwitch knx.getGroupObject(4) // DPT_Switch
-#define goBrightness knx.getGroupObject(5) // DPT_Switch
-#define goWhite knx.getGroupObject(6) // DPT_Switch
-#define goDimming knx.getGroupObject(7) // DPT_Switch
+#define goBrightness knx.getGroupObject(5) // DPT_Scaling
+#define goWhite knx.getGroupObject(6) // DPT_DecimalFactor
+#define goDimming knx.getGroupObject(7) // DPT_Control_Dimming
 /*
 #define goColorCCT knx.getGroupObject(4) // DPT_Brightness_Colour_Temperature_Transition ???
 #define goCurrent knx.getGroupObject(5) // DPT_Value_Curr
@@ -33,13 +33,15 @@
 #define errorResetTimeInMs 5000
 #define startupLedIndicationMs 5000
 
-#define pwmValueArraySize 6
+#define pwmValueArraySize 8
 #define valueIndexR 0
 #define valueIndexG 1
 #define valueIndexB 2
 #define valueIndexW 3
 #define valueIndexColorTemp 4
 #define valueIndexSwitch 5
+#define valueIndexBrightness 6
+#define valueIndexDimming 7
 
 struct KnxReceivedValue
 {
@@ -52,17 +54,35 @@ volatile bool newColorPending = false;
 volatile bool newSwitchValuePending = false;
 bool powerOffPending = false;
 bool colorErrorResetHandled = true;
+volatile bool newDimmingPending = false;
+volatile bool dimmingStarted = false;
 
 //TODO: create the object after the KNX initialization. Also, try to save the lookup tables to eeprom or SPI NOR and load it from there
 ColorRamp5LUT colorRamp5(1200, 2.2f, {0, 200}, {0, 200}, {0, 200}, {0, 255}, {0, 255});
 CCTMixer colorTempMixer(2700, 4000, 6500);
 SafeSwitch powerSwitch(PB5, true);
 
+uint8_t dimmingTimeMs = 50;
+
 void writeToSwitch(bool state)
 {
     uint8_t* dataPtr = goSwitch.valueRef(); 
 
     dataPtr[0] = state ? 1 : 0;
+}
+
+void deviceOn()
+{
+    powerSwitch.on();
+    writeToSwitch(true);
+    knxValues[valueIndexSwitch].value = 1;
+}
+
+void deviceOff()
+{
+    powerSwitch.off();
+    writeToSwitch(false);
+    knxValues[valueIndexSwitch].value = 0;
 }
 
 void initAdcAndStart()
@@ -99,20 +119,7 @@ inline void userLedOff()
     digitalWrite(PA9, LOW);
 }
 
-bool switchStatus()
-{
-    const uint8_t* data = goSwitch.valueRef();
-    size_t len = goSwitch.sizeInTelegram();
-
-    if (len >= 1) 
-    {
-        return data[0];
-    }   
-
-    return false;
-}
-
-void setSwitch(GroupObject& go)
+void onSetSwitch(GroupObject& go)
 {
     if (powerSwitch.isEmergencyLatched())
     {
@@ -136,7 +143,7 @@ void setSwitch(GroupObject& go)
     Serial.printf("Switch = %u\n", switchValue);
 }
 
-void setColorRgbw(GroupObject& go)
+void onSetColorRgbw(GroupObject& go)
 {
     const uint8_t* data = go.valueRef();
     size_t len = go.sizeInTelegram();
@@ -161,7 +168,7 @@ void setColorRgbw(GroupObject& go)
     }
 }
 
-void setColorRgb(GroupObject& go)
+void onSetColorRgb(GroupObject& go)
 {
     const uint8_t* data = go.valueRef();
     size_t len = go.sizeInTelegram();
@@ -186,7 +193,64 @@ void setColorRgb(GroupObject& go)
     }
 }
 
-void setColorTemperature(GroupObject& go)
+void onSetWhite(GroupObject& go)
+{
+    const uint8_t* data = go.valueRef();
+    size_t len = go.sizeInTelegram();
+
+    if (len >= 1)
+    {
+        uint8_t w = data[0];
+
+        knxValues[valueIndexW].value = w;
+
+        newColorPending = true;
+
+        Serial.printf("w = %u\n", w);
+    }
+    else 
+    {
+        Serial.printf("unexpected payload length: %u\n", (unsigned)len);
+    }
+}
+
+void onSetBrightness(GroupObject& go)
+{
+    if (dimmingStarted)
+    {
+        return;
+    }
+
+    const uint8_t* data = go.valueRef();
+    size_t len = go.sizeInTelegram();
+
+    if (len >= 1)
+    {
+        uint8_t brightness = data[0];
+
+        knxValues[valueIndexBrightness].value = brightness;
+
+        newColorPending = true;
+
+        Serial.printf("Brightness = %u\n", brightness);
+    }
+    else 
+    {
+        Serial.printf("unexpected payload length: %u\n", (unsigned)len);
+    }
+}
+
+void onSetDimming(GroupObject& go)
+{
+    const uint8_t* data = go.valueRef();
+    size_t len = go.sizeInTelegram();
+
+    newDimmingPending = true;
+    
+    knxValues[valueIndexDimming].value = data[0];
+}
+
+void onSetColorTemperature(GroupObject& go)
 {
     const uint8_t* data = go.valueRef();
     size_t len = go.sizeInTelegram();
@@ -251,7 +315,9 @@ void setup()
     knxValues[valueIndexG].value = 127;
     knxValues[valueIndexB].value = 127;
     knxValues[valueIndexW].value = 127;
-    knxValues[valueIndexColorTemp].value = 4100;
+    knxValues[valueIndexColorTemp].value = 3500;
+    knxValues[valueIndexSwitch].value = 0;
+    knxValues[valueIndexBrightness].value = 100;
 
     Serial.begin(115200);
     ArduinoPlatform::SerialDebug = &Serial;
@@ -270,21 +336,26 @@ void setup()
     if (knx.configured())
     {
         goColorRGBW.dataPointType(DPT_Colour_RGBW);
-        goColorRGBW.callback(setColorRgbw);
+        goColorRGBW.callback(onSetColorRgbw);
         
         goColorRGB.dataPointType(DPT_Colour_RGB);
-        goColorRGB.callback(setColorRgb);
+        goColorRGB.callback(onSetColorRgb);
 
         goColorTemperature.dataPointType(DPT_Absolute_Colour_Temperature);
-        goColorTemperature.callback(setColorTemperature);
+        goColorTemperature.callback(onSetColorTemperature);
 
         goSwitch.dataPointType(DPT_Switch);
-        goSwitch.callback(setSwitch);
+        goSwitch.callback(onSetSwitch);
 
         //TODO: Implement callback!
         goBrightness.dataPointType(DPT_Scaling); //0..100%
+        goBrightness.callback(onSetBrightness);
+
         goWhite.dataPointType(DPT_DecimalFactor); //0..255
+        goWhite.callback(onSetWhite);
+
         goDimming.dataPointType(DPT_Control_Dimming);
+        goDimming.callback(onSetDimming);
 
         /*
         // goColorWarm.dataPointType(DPT_Percent_U8); // Register callback to set the color - maybe not required, can be set if color temp
@@ -305,13 +376,6 @@ void setup()
         Serial.print("Abgleich: ");
         Serial.println(knx.paramByte(4));
     }
-
-    // pin or GPIO the programming led is connected to. Default is LED_BUILTIN
-    // knx.ledPin(LED_BUILTIN);
-    // is the led active on HIGH or low? Default is LOW
-    // knx.ledPinActiveOn(HIGH);
-    // pin or GPIO programming button is connected to. Default is 0
-    // knx.buttonPin(0);
 
     // start the framework.
     knx.start();
@@ -334,11 +398,88 @@ void loop()
 
     handlePowerSwitch();
 
+    handleDimming(currentTime);
+
     handleColorChange(currentTime);
 
     handleAdc();
 
     handleUserInterface(currentTime);
+}
+
+void handleDimming(uint32_t currentTimeMs)
+{
+    static Helper::DimmingDirection dimmingDir;
+    static uint32_t lastDimmingTimeMs = currentTimeMs;
+
+    if(newDimmingPending)
+    {
+        newDimmingPending = false;
+
+        Helper::DimmingPacket dimmingData;
+        uint8_t brightness;
+
+        noInterrupts();
+        dimmingData.raw = knxValues[valueIndexDimming].value;
+        brightness = knxValues[valueIndexBrightness].value;
+        interrupts();
+
+        // Indication to start dimming
+        if (dimmingData.bits.data > 0)
+        {
+            if (dimmingData.bits.control)
+            {
+                // Power on the device if it is off.
+                // Start dimming up
+                if (!powerSwitch.isOn())
+                {
+                    knxValues[valueIndexBrightness].value = 0;
+                    deviceOn();
+                    dimmingStarted = true;
+                }
+                else if (brightness < 100)
+                {
+                    dimmingStarted = true;
+                }
+                
+                dimmingDir = Helper::DimmingDirection::Up;
+            }
+            else if(!dimmingData.bits.control && powerSwitch.isOn() && brightness > 0)
+            {
+                dimmingDir = Helper::DimmingDirection::Down;
+                dimmingStarted = true;
+            }
+        }
+        else
+        {
+            //STOP dimming - do not turn device off
+            dimmingStarted = false;
+            dimmingDir = Helper::DimmingDirection::None;
+        }
+    }
+
+    if (dimmingStarted)
+    {
+        //100% - 3-5sec
+        //1% -> 30-50ms
+
+        if (currentTimeMs > lastDimmingTimeMs + dimmingTimeMs)
+        {
+            lastDimmingTimeMs = currentTimeMs;
+            auto brightness = knxValues[valueIndexBrightness].value;
+
+            if (dimmingDir == Helper::DimmingDirection::Up && brightness < 100)
+            {
+                knxValues[valueIndexBrightness].value++;
+            }
+            else if (dimmingDir == Helper::DimmingDirection::Down && brightness > 0)
+            {
+                knxValues[valueIndexBrightness].value--;
+            }
+            
+            newColorPending = true;
+        }
+    }
 }
 
 void handleUserInterface(uint32_t currentTimeMs)
@@ -443,6 +584,8 @@ void handlePowerSwitch()
         if (switchValue == false)
         {
             powerOffPending = true;
+
+            dimmingStarted = false;
         }
         else
         {
@@ -498,6 +641,7 @@ void handleColorChange(uint32_t currentTimeMs)
                 uint8_t b;
                 uint8_t w;
                 u_int16_t colorTemp;
+                uint8_t brightness;
 
                 noInterrupts();               // small critical section if interrupt driven
                 
@@ -506,6 +650,8 @@ void handleColorChange(uint32_t currentTimeMs)
                 b = knxValues[valueIndexB].value;
                 w = knxValues[valueIndexW].value;
                 colorTemp = knxValues[valueIndexColorTemp].value;
+                brightness = knxValues[valueIndexBrightness].value;
+
                 newColorPending = false;
 
                 interrupts();
@@ -515,11 +661,11 @@ void handleColorChange(uint32_t currentTimeMs)
                 auto cwww = colorTempMixer.compute(colorTemp, Helper::byteToPct(w));
 
                 ColorRamp5LUT::Channels next;
-                next.r = r;
-                next.g = g;
-                next.b = b;
-                next.ww = cwww.warmOut;
-                next.w = cwww.coldOut;
+                next.r = Helper::applyPercent_u8(r, brightness);
+                next.g = Helper::applyPercent_u8(g, brightness);
+                next.b = Helper::applyPercent_u8(b, brightness);
+                next.ww = Helper::applyPercent_u8(cwww.warmOut, brightness);
+                next.w = Helper::applyPercent_u8(cwww.coldOut, brightness);
 
                 if(!colorErrorResetHandled)
                 {

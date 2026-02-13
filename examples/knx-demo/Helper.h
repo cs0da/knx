@@ -13,6 +13,27 @@
 
 namespace Helper
 {
+    enum DimmingDirection {
+        None = 0,
+        Up,
+        Down
+    };
+
+    union DimmingPacket {
+    uint8_t raw;
+    struct {
+        uint8_t data    : 3; // bits 0–2 (1–3)
+        uint8_t control : 1; // bit 3 (4)
+        uint8_t unused  : 4;
+    } bits;
+    };
+
+    static inline uint8_t applyPercent_u8(uint8_t value, uint8_t percent) {
+        if (percent >= 100) return value;   // handles 100..255 too
+        // (value * percent + 50) / 100  -> rounded
+        return (uint8_t)(((uint16_t)value * (uint16_t)percent + 50u) / 100u);
+    }
+
     // /**
     //  * @param pct  Percentage value (0..100). Values >100 are clamped.
     //  * @return     Byte value (0..255).
