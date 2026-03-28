@@ -36,6 +36,7 @@ void Stm32Platform::restart()
 
 uint8_t* Stm32Platform::getEepromBuffer(uint32_t size)
 {
+    #if !defined(DATA_EEPROM_BASE)
     // check if the buffer already exists
     if (_eepromPtr == nullptr) // we need to initialize the buffer first
     {
@@ -51,12 +52,32 @@ uint8_t* Stm32Platform::getEepromBuffer(uint32_t size)
         for (uint16_t i = 0; i < size; ++i)
             _eepromPtr[i] = eeprom_buffered_read_byte(i);
     }
+    #else
+
+    if (_eepromPtr == nullptr) // we need to initialize the buffer first
+    {
+        if (size > E2END + 1)
+        {
+            fatalError();
+        }
+
+        _eepromSize = size;
+
+        _eepromPtr = new uint8_t[size];
+
+        for (uint16_t i = 0; i < size; ++i)
+            _eepromPtr[i] = EEPROM.read(i);
+    }
+
+    #endif
 
     return _eepromPtr;
 }
 
 void Stm32Platform::commitToEeprom()
 {
+    #if !defined(DATA_EEPROM_BASE)
+
     if (_eepromPtr == nullptr || _eepromSize == 0)
         return;
 
@@ -69,6 +90,16 @@ void Stm32Platform::commitToEeprom()
     // does nothing.
     HAL_FLASH_Unlock();
     eeprom_buffer_flush();
+
+    #else
+
+    if (_eepromPtr == nullptr || _eepromSize == 0)
+        return;
+
+    for (uint16_t i = 0; i < _eepromSize; ++i)
+    EEPROM.write(i, _eepromPtr[i]);
+
+    #endif
 }
 
 #endif
