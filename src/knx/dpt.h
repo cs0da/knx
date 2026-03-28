@@ -59,6 +59,7 @@
 #define DPT_Length_mm Dpt(7, 11)
 #define DPT_UElCurrentmA Dpt(7, 12)
 #define DPT_Brightness Dpt(7, 13)
+#define DPT_Absolute_Colour_Temperature Dpt(7, 600)
 #define DPT_Value_2_Count Dpt(8, 1)
 #define DPT_DeltaTimeMsec Dpt(8, 2)
 #define DPT_DeltaTime10MSec Dpt(8, 3)
